@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simplified HOA — HOA Finances, Finally Under Control</title>
+<meta name="description" content="Simplified HOA is the simple, affordable dashboard for self-managed HOA boards. Track dues, manage expenses, and generate board-ready reports — no property management company required.">
+<meta property="og:title" content="Simplified HOA — HOA Finances, Finally Under Control">
+<meta property="og:description" content="Simple, affordable HOA financial management for self-managed boards.">
+<meta property="og:url" content="https://simplifiedhoa.net">
+<link rel="canonical" href="https://simplifiedhoa.net">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:        #1B3A6B;
+    --navy-dark:   #122850;
+    --navy-mid:    #2A5298;
+    --sky:         #1D7DB5;
+    --sky-light:   #4A9FD4;
+    --sky-pale:    #E6F3FA;
+    --white:       #FFFFFF;
+    --off-white:   #F5F8FC;
+    --text:        #1A202C;
+    --text-muted:  #4A5568;
+    --border:      #D1DCF0;
+    --radius:      12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(245,248,252,0.93);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .logo-icon {
+    width: 34px; height: 34px;
+    background: var(--navy);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .logo-icon svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+
+  .nav-link {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .nav-link:hover { color: var(--navy); }
+
+  .nav-cta {
+    background: var(--navy);
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--navy-mid); }
+
+  /* HERO */
+  .hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 6rem 2rem 5rem;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--sky-pale);
+    color: var(--sky);
+    border: 1px solid #B8D9EF;
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-badge .pulse {
+    width: 7px; height: 7px;
+    background: var(--sky);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.12;
+    color: var(--navy);
+    margin-bottom: 1.25rem;
+    max-width: 780px;
+    margin-left: auto; margin-right: auto;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--sky);
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 540px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+  }
+
+  /* EMAIL FORM */
+  .email-form {
+    display: flex;
+    gap: 8px;
+    max-width: 480px;
+    margin: 0 auto 0.75rem;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 5px 5px 5px 16px;
+    box-shadow: 0 2px 12px rgba(27,58,107,0.08);
+  }
+
+  .email-form input[type="email"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  .email-form input::placeholder { color: #A0AEC0; }
+
+  .email-form button {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 10px 22px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .email-form button:hover { background: var(--navy-mid); }
+
+  .hero-sub {
+    font-size: 0.8rem;
+    color: #A0AEC0;
+    margin-bottom: 3.5rem;
+  }
+
+  /* TRUST LOGOS STRIP */
+  .trust-strip {
+    border-top: 1px solid var(--border);
+    padding-top: 2.5rem;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .trust-strip p {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #A0AEC0;
+    margin-bottom: 1.25rem;
+  }
+
+  .trust-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* PROOF STRIP */
+  .proof-strip {
+    background: var(--navy);
+    padding: 1.25rem 2rem;
+    text-align: center;
+    margin-top: 4rem;
+  }
+
+  .proof-strip p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.875rem;
+    font-weight: 300;
+  }
+
+  .proof-strip strong { color: #fff; font-weight: 500; }
+
+  /* SECTIONS */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 0.75rem;
+  }
+
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.2;
+    color: var(--navy);
+    max-width: 580px;
+    margin-bottom: 3rem;
+  }
+
+  /* PAIN CARDS */
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .pain-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--sky-pale);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.5rem 1.25rem;
+  }
+
+  .pain-card .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--sky-pale);
+    line-height: 0.8;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .pain-card p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  .pain-card .attr {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--navy);
+    font-style: normal;
+  }
+
+  /* DIVIDER */
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .feature-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    transition: border-color 0.2s;
+  }
+  .feature-card:hover { border-color: var(--sky-light); }
+
+  .feature-icon {
+    width: 46px; height: 46px;
+    background: var(--sky-pale);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .feature-icon svg {
+    width: 22px; height: 22px;
+    stroke: var(--sky);
+    fill: none;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .feature-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* PRICING BLOCK */
+  .pricing-block {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+  }
+
+  .pricing-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 0.35rem;
+  }
+
+  .pricing-block p { font-size: 0.88rem; color: rgba(255,255,255,0.55); }
+
+  .pricing-block ul {
+    list-style: none;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .pricing-block ul li {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.75);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pricing-block ul li::before {
+    content: '';
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--sky-pale);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%231D7DB5' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .price-right { text-align: right; flex-shrink: 0; }
+
+  .price-tag {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .price-tag sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+    vertical-align: baseline;
+  }
+
+  .price-note { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 6px; }
+
+  .price-cta {
+    display: inline-block;
+    margin-top: 1.25rem;
+    background: #fff;
+    color: var(--navy);
+    padding: 11px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+  .price-cta:hover { background: var(--sky-pale); }
+
+  /* SUGGESTIONS */
+  .suggestions-section {
+    background: var(--navy-dark);
+    padding: 5.5rem 2rem;
+  }
+
+  .suggestions-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .suggestions-inner .section-label { color: var(--sky-light); }
+
+  .suggestions-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .suggestions-inner > p {
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    font-size: 0.95rem;
+  }
+
+  .suggestion-form {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: left;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--sky-light); }
+
+  .form-group select option { background: var(--navy-dark); color: #fff; }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .submit-btn {
+    width: 100%;
+    margin-top: 1.25rem;
+    background: var(--sky);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 13px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .submit-btn:hover { background: var(--sky-light); }
+  .submit-btn:active { transform: scale(0.99); }
+
+  .success-msg {
+    display: none;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .check-circle {
+    width: 54px; height: 54px;
+    background: var(--sky);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.25rem;
+  }
+
+  .check-circle svg { width: 26px; height: 26px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 0.5rem; }
+  .success-msg p { font-size: 0.9rem; color: rgba(255,255,255,0.55); }
+
+  /* FOOTER */
+  footer {
+    background: #0D1F3C;
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    color: rgba(255,255,255,0.35);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  footer p { font-size: 0.78rem; color: rgba(255,255,255,0.2); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge { animation: fadeUp 0.45s ease both; }
+  .hero h1    { animation: fadeUp 0.5s 0.1s ease both; }
+  .hero p     { animation: fadeUp 0.5s 0.2s ease both; }
+  .email-form { animation: fadeUp 0.5s 0.3s ease both; }
+  .trust-strip { animation: fadeUp 0.5s 0.4s ease both; }
+
+  @media (max-width: 560px) {
+    .email-form { flex-direction: column; padding: 10px; gap: 8px; }
+    .email-form input { padding: 10px; }
+    .form-row { grid-template-columns: 1fr; }
+    .pricing-block { flex-direction: column; text-align: center; }
+    .price-right { text-align: center; }
+    .trust-stats { gap: 2rem; }
+    .nav-link { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    Simplified HOA
+  </a>
+  <div class="nav-right">
+    <a href="#how-it-works" class="nav-link">Features</a>
+    <a href="#get-notified" class="nav-cta">Get Early Access</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="pulse"></span>
+    Now accepting early interest
+  </div>
+  <h1>HOA finances, <em>finally</em> under control</h1>
+  <p>A simple, affordable dashboard built for self-managed HOA boards — no property management company required.</p>
+
+  <form class="email-form" id="hero-form" onsubmit="handleHeroSubmit(event)">
+    <input type="email" placeholder="Enter your email address" required id="hero-email">
+    <button type="submit">Notify Me</button>
+  </form>
+  <p class="hero-sub">No spam. We'll only reach out when we're ready to launch.</p>
+
+  <div class="trust-strip">
+    <p>The opportunity</p>
+    <div class="trust-stats">
+      <div class="stat-item">
+        <div class="stat-num">370K+</div>
+        <div class="stat-label">HOAs in the US</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">~30%</div>
+        <div class="stat-label">Are self-managed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">40M+</div>
+        <div class="stat-label">Homes in HOAs</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">$49</div>
+        <div class="stat-label">Per month, flat</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <p>Most HOA board members are <strong>volunteers with no accounting background</strong> — yet they're expected to manage budgets, collect dues, and report financials every month</p>
+</div>
+
+<!-- PAIN SECTION -->
+<section class="section">
+  <p class="section-label">Sound familiar?</p>
+  <h2>Managing your HOA shouldn't feel like a second job</h2>
+
+  <div class="pain-grid">
+    <div class="pain-card">
+      <span class="quote-mark">"</span>
+      <p>We use three different spreadsheets and nobody's sure which one is the most up to date.</p>
+      <p class="attr">— HOA Board Treasurer</p>
+    </div>
+    <div class="pain-card">
+      <span class="quote-mark">"</span>
+      <p>At every board meeting someone asks how much is in the reserve fund and it takes 20 minutes to find the answer.</p>
+      <p class="attr">— HOA Board President</p>
+    </div>
+    <div class="pain-card">
+      <span class="quote-mark">"</span>
+      <p>Chasing homeowners for late dues is the worst part. I feel like a collections agent on weekends.</p>
+      <p class="attr">— HOA Board Member</p>
+    </div>
+    <div class="pain-card">
+      <span class="quote-mark">"</span>
+      <p>HOA software is either too expensive or built for huge management companies — not a 40-home neighborhood.</p>
+      <p class="attr">— Self-Managed HOA Treasurer</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FEATURES SECTION -->
+<section class="section" id="how-it-works">
+  <p class="section-label">What we're building</p>
+  <h2>Everything your board needs. Nothing you don't.</h2>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </div>
+      <h3>Financial Dashboard</h3>
+      <p>See your operating balance, reserve fund, and monthly spending at a glance — no accounting degree required.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      </div>
+      <h3>Dues Tracking</h3>
+      <p>Track who's paid, who's late, and who's delinquent. Send automated payment reminders so you don't have to.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <h3>Board Reports</h3>
+      <p>Auto-generate a clean monthly financial summary PDF — ready to present at your next board meeting in one click.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>Expense Tracking</h3>
+      <p>Log landscaping, repairs, insurance, and vendor payments. Attach receipts and keep everything organized year-round.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <h3>Homeowner Portal</h3>
+      <p>Let residents check their dues balance, make payments, and receive community announcements all in one place.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      </div>
+      <h3>Online Payments</h3>
+      <p>Accept ACH and card payments directly through the platform. Funds deposit straight to your HOA bank account.</p>
+    </div>
+  </div>
+
+  <div class="pricing-block">
+    <div>
+      <h3>Simple, flat-rate pricing</h3>
+      <p>One monthly fee — no per-unit charges, no setup costs, no long-term contracts.</p>
+      <ul>
+        <li>Unlimited homeowners</li>
+        <li>All features included</li>
+        <li>Free onboarding support</li>
+        <li>Cancel anytime</li>
+      </ul>
+    </div>
+    <div class="price-right">
+      <div class="price-tag">$49 <sub>/ mo</sub></div>
+      <p class="price-note">Early access pricing — locked in for life</p>
+      <a href="#get-notified" class="price-cta">Get Early Access</a>
+    </div>
+  </div>
+</section>
+
+<!-- SUGGESTIONS SECTION -->
+<section class="suggestions-section" id="get-notified">
+  <div class="suggestions-inner">
+    <p class="section-label">Help shape the product</p>
+    <h2>Tell us what you need</h2>
+    <p>We're building Simplified HOA from the ground up. Your input directly decides what gets built first. Takes 2 minutes.</p>
+
+    <div id="form-wrap" class="suggestion-form">
+      <form onsubmit="handleSuggestionSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your name</label>
+            <input type="text" placeholder="Jane Smith" required>
+          </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" placeholder="jane@example.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your role in the HOA</label>
+            <select>
+              <option value="">Select role...</option>
+              <option>Board President</option>
+              <option>Board Treasurer</option>
+              <option>Board Secretary</option>
+              <option>Board Member</option>
+              <option>Homeowner / Resident</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Homes in your HOA?</label>
+            <select>
+              <option value="">Select range...</option>
+              <option>Under 25 homes</option>
+              <option>25 – 75 homes</option>
+              <option>75 – 200 homes</option>
+              <option>200+ homes</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label>What tools does your HOA use today?</label>
+            <input type="text" placeholder="e.g. Excel, QuickBooks, nothing at all...">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label>What's your biggest HOA financial headache?</label>
+            <textarea placeholder="Tell us what's frustrating, broken, or just takes way too long..."></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label>What feature would make your life significantly easier?</label>
+            <textarea placeholder="Dream big — what would you love Simplified HOA to do?"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn">Submit & Get Early Access →</button>
+      </form>
+    </div>
+
+    <div class="success-msg" id="success-msg">
+      <div class="check-circle">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>You're on the list!</h3>
+      <p>Thank you — your input will directly shape what we build. We'll be in touch when early access opens.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">Simplified HOA</p>
+  <p>© 2026 Simplified HOA · <a href="https://simplifiedhoa.net" style="color:rgba(255,255,255,0.3); text-decoration:none;">simplifiedhoa.net</a> · Built for boards, by a homeowner · Palatine, IL</p>
+</footer>
+
+<script>
+  function handleHeroSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('hero-email').value;
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ You\'re on the list!';
+    btn.style.background = '#2A5298';
+    btn.disabled = true;
+    e.target.querySelector('input').disabled = true;
+    console.log('Hero email:', email);
+  }
+
+  function handleSuggestionSubmit(e) {
+    e.preventDefault();
+    const data = {};
+    e.target.querySelectorAll('input, select, textarea').forEach((el, i) => {
+      data['field_' + i] = el.value;
+    });
+    console.log('Form submission:', data);
+    document.getElementById('form-wrap').style.display = 'none';
+    const msg = document.getElementById('success-msg');
+    msg.style.display = 'block';
+    msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
