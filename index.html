@@ -655,7 +655,7 @@
   <p>A simple, affordable dashboard built for self-managed HOA boards — no property management company required.</p>
 
   <form class="email-form" action="https://formspree.io/f/mnjrlwbr" method="POST">
-    <input type="email" placeholder="Enter your email address" required id="hero-email">
+    <input type="email" name="email" placeholder="Enter your email address" required id="hero-email">
     <button type="submit">Notify Me</button>
   </form>
   <p class="hero-sub">No spam. We'll only reach out when we're ready to launch.</p>
@@ -800,17 +800,17 @@
         <div class="form-row">
           <div class="form-group">
             <label>Your name</label>
-            <input type="text" placeholder="Jane Smith" required>
+            <input type="text" name="name" placeholder="Jane Smith" required>
           </div>
           <div class="form-group">
             <label>Email address</label>
-            <input type="email" placeholder="jane@example.com" required>
+            <input type="email" name="email" placeholder="jane@example.com" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Your role in the HOA</label>
-            <select>
+            <select name="role">
               <option value="">Select role...</option>
               <option>Board President</option>
               <option>Board Treasurer</option>
@@ -822,7 +822,7 @@
           </div>
           <div class="form-group">
             <label>Homes in your HOA?</label>
-            <select>
+            <select name="hoa_size">
               <option value="">Select range...</option>
               <option>Under 25 homes</option>
               <option>25 – 75 homes</option>
@@ -834,19 +834,19 @@
         <div class="form-row">
           <div class="form-group full">
             <label>What tools does your HOA use today?</label>
-            <input type="text" placeholder="e.g. Excel, QuickBooks, nothing at all...">
+            <input type="text" name="current_tools" placeholder="e.g. Excel, QuickBooks, nothing at all...">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group full">
             <label>What's your biggest HOA financial headache?</label>
-            <textarea placeholder="Tell us what's frustrating, broken, or just takes way too long..."></textarea>
+            <textarea name="biggest_headache" placeholder="Tell us what's frustrating, broken, or just takes way too long..."></textarea>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group full">
             <label>What would make Simplified HOA a must-have for your board?</label>
-            <textarea placeholder="What's the one thing that would make managing your HOA finances effortless?"></textarea>
+            <textarea name="feature_request" placeholder="What's the one thing that would make managing your HOA finances effortless?"></textarea>
           </div>
         </div>
         <button type="submit" class="submit-btn">Submit My Suggestions →</button>
