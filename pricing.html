@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — SimplifiedHOA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: #f0f7ff; color: #1e293b; }
+
+    /* Nav */
+    nav { background: white; border-bottom: 1px solid #dbeafe; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-size: 20px; font-weight: 700; color: #1d4ed8; text-decoration: none; }
+    .nav-login { font-size: 14px; font-weight: 600; color: #1d4ed8; text-decoration: none; border: 2px solid #1d4ed8; padding: 8px 20px; border-radius: 8px; transition: all .2s; }
+    .nav-login:hover { background: #1d4ed8; color: white; }
+
+    /* Hero */
+    .hero { text-align: center; padding: 80px 20px 48px; }
+    .hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 700; color: #1e293b; line-height: 1.15; margin-bottom: 16px; }
+    .hero h1 span { color: #1d4ed8; }
+    .hero p { font-size: 18px; color: #64748b; max-width: 480px; margin: 0 auto 12px; }
+    .hero-note { font-size: 14px; color: #94a3b8; }
+
+    /* Plans grid */
+    .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; max-width: 1080px; margin: 0 auto; padding: 0 24px 80px; }
+
+    .plan-card { background: white; border-radius: 20px; border: 2px solid #dbeafe; padding: 32px 28px; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
+    .plan-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(109,40,217,.12); }
+    .plan-card.popular { border-color: #1d4ed8; position: relative; }
+    .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #1d4ed8; color: white; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; white-space: nowrap; }
+
+    .plan-name { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #94a3b8; margin-bottom: 8px; }
+    .plan-price { font-size: 42px; font-weight: 700; color: #1e293b; line-height: 1; margin-bottom: 4px; }
+    .plan-price span { font-size: 16px; font-weight: 500; color: #94a3b8; }
+    .plan-limit { font-size: 14px; color: #64748b; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e2e8f0; }
+
+    .features { list-style: none; flex: 1; margin-bottom: 28px; space-y: 10px; }
+    .features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #475569; padding: 6px 0; }
+    .check { width: 18px; height: 18px; background: #dbeafe; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #1d4ed8; font-size: 10px; font-weight: 700; }
+
+    .plan-btn { display: block; text-align: center; padding: 14px; border-radius: 12px; font-weight: 600; font-size: 15px; text-decoration: none; transition: all .2s; }
+    .plan-btn-primary { background: #1d4ed8; color: white; }
+    .plan-btn-primary:hover { background: #1e40af; }
+    .plan-btn-outline { background: white; color: #1d4ed8; border: 2px solid #1d4ed8; }
+    .plan-btn-outline:hover { background: #eff6ff; }
+
+    /* FAQ / note */
+    .bottom-note { text-align: center; padding: 0 24px 80px; }
+    .bottom-note p { font-size: 15px; color: #64748b; max-width: 560px; margin: 0 auto 8px; }
+    .bottom-note a { color: #1d4ed8; font-weight: 600; }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .plans { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">🏘️ SimplifiedHOA</a>
+    <div style="display:flex; align-items:center; gap:16px;">
+      <a href="index.html" style="font-size:14px; font-weight:600; color:#1d4ed8; text-decoration:none;">Features</a>
+      <a href="https://app.simplifiedhoa.net/login" class="nav-login">Sign In</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>Simple pricing.<br><span>No surprises.</span></h1>
+    <p>One flat monthly fee per HOA — no per-unit charges, no hidden costs.</p>
+    <p class="hero-note">All plans include a full-featured homeowner portal, dues tracking, work orders, violations, and more.</p>
+  </div>
+
+  <div class="plans">
+
+    <!-- Single HOA -->
+    <div class="plan-card popular">
+      <span class="popular-badge">Best for Self-Managed Boards</span>
+      <p class="plan-name">Single HOA</p>
+      <p class="plan-price">$49<span>/mo</span></p>
+      <p class="plan-limit">1 HOA community</p>
+      <ul class="features">
+        <li><span class="check">✓</span> 1 HOA</li>
+        <li><span class="check">✓</span> Unlimited homeowners</li>
+        <li><span class="check">✓</span> Dues tracking & reminders</li>
+        <li><span class="check">✓</span> Work orders & violations</li>
+        <li><span class="check">✓</span> Homeowner portal</li>
+        <li><span class="check">✓</span> Document storage</li>
+        <li><span class="check">✓</span> Board calendar</li>
+      </ul>
+      <a href="https://app.simplifiedhoa.net/signup?plan=single" class="plan-btn plan-btn-primary">Get Started</a>
+    </div>
+
+    <!-- Small Portfolio -->
+    <div class="plan-card popular">
+      <span class="popular-badge">For Small Management Companies</span>
+      <p class="plan-name">Small Portfolio</p>
+      <p class="plan-price">$199<span>/mo</span></p>
+      <p class="plan-limit">Up to 5 HOA communities</p>
+      <ul class="features">
+        <li><span class="check">✓</span> Up to 5 HOAs</li>
+        <li><span class="check">✓</span> Unlimited homeowners</li>
+        <li><span class="check">✓</span> Dues tracking & reminders</li>
+        <li><span class="check">✓</span> Work orders & violations</li>
+        <li><span class="check">✓</span> Homeowner portal</li>
+        <li><span class="check">✓</span> Document storage</li>
+        <li><span class="check">✓</span> Board calendar</li>
+      </ul>
+      <a href="https://app.simplifiedhoa.net/signup?plan=portfolio" class="plan-btn plan-btn-outline">Get Started</a>
+    </div>
+
+    <!-- Management Company -->
+    <div class="plan-card" style="position:relative;">
+      <span class="popular-badge">For Growing Management Companies</span>
+      <p class="plan-name">Management Company</p>
+      <p class="plan-price">$799<span>/mo</span></p>
+      <p class="plan-limit">Up to 25 HOA communities</p>
+      <ul class="features">
+        <li><span class="check">✓</span> Up to 25 HOAs</li>
+        <li><span class="check">✓</span> Unlimited homeowners</li>
+        <li><span class="check">✓</span> Dues tracking & reminders</li>
+        <li><span class="check">✓</span> Work orders & violations</li>
+        <li><span class="check">✓</span> Homeowner portal</li>
+        <li><span class="check">✓</span> Document storage</li>
+        <li><span class="check">✓</span> Board calendar</li>
+      </ul>
+      <a href="https://app.simplifiedhoa.net/signup?plan=management" class="plan-btn plan-btn-outline">Get Started</a>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="plan-card" style="position:relative;">
+      <span class="popular-badge">For Large Organizations</span>
+      <p class="plan-name">Enterprise</p>
+      <p class="plan-price" style="font-size:32px;">Custom</p>
+      <p class="plan-limit">Unlimited HOA communities</p>
+      <ul class="features">
+        <li><span class="check">✓</span> Unlimited HOAs</li>
+        <li><span class="check">✓</span> Unlimited homeowners</li>
+        <li><span class="check">✓</span> Dues tracking & reminders</li>
+        <li><span class="check">✓</span> Work orders & violations</li>
+        <li><span class="check">✓</span> Homeowner portal</li>
+        <li><span class="check">✓</span> Document storage</li>
+        <li><span class="check">✓</span> Board calendar</li>
+        <li><span class="check">✓</span> Priority support</li>
+      </ul>
+      <a href="mailto:support@simplifiedhoa.net?subject=Enterprise Plan Inquiry" class="plan-btn plan-btn-outline">Contact Us</a>
+    </div>
+
+  </div>
+
+  <div class="bottom-note">
+    <p>All plans require account activation within 24 hours of signup.</p>
+    <p>Questions? Email <a href="mailto:support@simplifiedhoa.net">support@simplifiedhoa.net</a></p>
+  </div>
+
+</body>
+</html>
