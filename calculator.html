@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free HOA Dues Calculator — SimplifiedHOA</title>
+<meta name="description" content="Estimate fair monthly HOA dues for your community in seconds. Free calculator — no signup required. Factors in operating budget, reserve funding, and unit count.">
+<meta property="og:title" content="Free HOA Dues Calculator — SimplifiedHOA">
+<meta property="og:description" content="Estimate fair monthly HOA dues for your community in seconds. Free, no signup required.">
+<meta property="og:url" content="https://simplifiedhoa.net/calculator">
+<link rel="canonical" href="https://simplifiedhoa.net/calculator">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:        #1D4ED8;
+    --navy-dark:   #1D4ED8;
+    --navy-mid:    #1E40AF;
+    --sky:         #2563EB;
+    --sky-light:   #3B82F6;
+    --sky-pale:    #EFF6FF;
+    --white:       #FFFFFF;
+    --off-white:   #F5F8FC;
+    --text:        #1A202C;
+    --text-muted:  #4A5568;
+    --border:      #DBEAFE;
+    --radius:      12px;
+    --amber:       #B7791F;
+    --amber-pale:  #FFF8EB;
+    --amber-border:#F3E0B5;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    font-size: clamp(16px, 1.1vw, 19px);
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(245,248,252,0.93);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--navy);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .logo-icon {
+    width: 34px; height: 34px;
+    background: var(--navy);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .logo-icon svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+
+  .nav-link {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .nav-link:hover { color: var(--navy); }
+
+  .nav-cta {
+    background: var(--navy);
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--navy-mid); }
+
+  /* HERO */
+  .hero {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4.5rem 2rem 2.5rem;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--sky-pale);
+    color: var(--sky);
+    border: 1px solid #BFDBFE;
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--sky); }
+
+  .hero p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+
+  /* CALCULATOR CARD */
+  .calc-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+  }
+
+  .calc-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.25rem;
+    box-shadow: 0 4px 24px rgba(27,58,107,0.06);
+  }
+
+  .calc-row { margin-bottom: 1.4rem; }
+  .calc-row:last-of-type { margin-bottom: 0; }
+
+  .calc-row label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .calc-row .hint {
+    font-size: 0.78rem;
+    color: #94A3B8;
+    font-weight: 400;
+    margin-left: 6px;
+  }
+
+  .input-wrap { position: relative; }
+
+  .input-wrap .prefix {
+    position: absolute;
+    left: 14px; top: 50%; transform: translateY(-50%);
+    color: #94A3B8;
+    font-size: 0.95rem;
+    pointer-events: none;
+  }
+
+  .calc-row input {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .calc-row input.with-prefix { padding-left: 28px; }
+  .calc-row input:focus { border-color: var(--sky-light); }
+
+  .calc-btn {
+    width: 100%;
+    margin-top: 1.75rem;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .calc-btn:hover { background: var(--navy-mid); }
+  .calc-btn:active { transform: scale(0.99); }
+
+  /* RESULT */
+  .result-card {
+    display: none;
+    margin-top: 1.5rem;
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .result-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sky-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .result-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .result-num sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .result-breakdown {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    flex-wrap: wrap;
+  }
+
+  .breakdown-item { text-align: center; }
+  .breakdown-num { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #fff; }
+  .breakdown-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+  .disclaimer {
+    font-size: 0.78rem;
+    color: #94A3B8;
+    text-align: center;
+    margin-top: 1.25rem;
+    line-height: 1.6;
+  }
+
+  /* EMAIL CAPTURE */
+  .capture-card {
+    display: none;
+    margin-top: 1rem;
+    background: var(--sky-pale);
+    border: 1px solid #BFDBFE;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .capture-card p { font-size: 0.88rem; color: var(--navy); margin-bottom: 0.9rem; font-weight: 500; }
+
+  .capture-form {
+    display: flex;
+    gap: 8px;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .capture-form input[type="email"] {
+    flex: 1;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+  }
+  .capture-form input:focus { border-color: var(--sky-light); }
+
+  .capture-form button {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 10px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .capture-form button:hover { background: var(--navy-mid); }
+
+  .capture-sent { display: none; font-size: 0.85rem; color: var(--navy); font-weight: 600; }
+
+  /* CTA BLOCK */
+  .cta-block {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem 2rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-block p { font-size: 0.9rem; color: var(--text-muted); }
+  .cta-block strong { color: var(--navy); }
+
+  .cta-block a {
+    background: var(--sky);
+    color: #fff;
+    text-decoration: none;
+    padding: 11px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .cta-block a:hover { background: var(--sky-light); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy-dark);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .footer-logo {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  footer p { font-size: 0.78rem; color: rgba(255,255,255,0.2); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-badge, .hero h1, .hero p, .calc-card { animation: fadeUp 0.45s ease both; }
+
+  @media (max-width: 560px) {
+    .capture-form { flex-direction: column; }
+    .result-breakdown { gap: 1.5rem; }
+    .cta-block { flex-direction: column; text-align: center; }
+    .nav-link { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    SimplifiedHOA
+  </a>
+  <div class="nav-right">
+    <a href="index.html#how-it-works" class="nav-link">Features</a>
+    <a href="pricing.html" class="nav-link">Pricing</a>
+    <a href="https://app.simplifiedhoa.net/signup" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span class="pulse"></span> Free tool · No signup required</div>
+  <h1>What should your HOA <em>actually</em> charge?</h1>
+  <p>Estimate a fair monthly due for your community in seconds, based on your operating budget and reserve goals.</p>
+</section>
+
+<!-- CALCULATOR -->
+<div class="calc-wrap">
+  <div class="calc-card">
+    <div class="calc-row">
+      <label for="units">Number of homes / units</label>
+      <input type="number" id="units" min="1" placeholder="e.g. 42" inputmode="numeric">
+    </div>
+    <div class="calc-row">
+      <label for="budget">Annual operating budget <span class="hint">landscaping, insurance, utilities, management, repairs</span></label>
+      <div class="input-wrap">
+        <span class="prefix">$</span>
+        <input type="number" id="budget" min="0" placeholder="e.g. 60000" class="with-prefix" inputmode="numeric">
+      </div>
+    </div>
+    <div class="calc-row">
+      <label for="reserve">Annual reserve contribution <span class="hint">savings for future roof, paving, pool repairs, etc.</span></label>
+      <div class="input-wrap">
+        <span class="prefix">$</span>
+        <input type="number" id="reserve" min="0" placeholder="e.g. 12000" class="with-prefix" inputmode="numeric">
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calculateDues()">Calculate Suggested Dues →</button>
+
+    <div class="result-card" id="result-card">
+      <div class="result-label">Suggested Monthly Dues Per Unit</div>
+      <div class="result-num" id="result-total">$0<sub>/mo</sub></div>
+      <div class="result-breakdown">
+        <div class="breakdown-item">
+          <div class="breakdown-num" id="result-operating">$0</div>
+          <div class="breakdown-label">Operating / mo</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-num" id="result-reserve">$0</div>
+          <div class="breakdown-label">Reserve / mo</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="disclaimer" id="disclaimer" style="display:none;">
+      This is a rough estimate based on the numbers you entered — it's not a substitute for a certified reserve study or your board's formal budget review. Actual dues should also account for existing reserve balances, planned capital projects, and state requirements.
+    </p>
+  </div>
+
+  <div class="capture-card" id="capture-card">
+    <p>Want this breakdown emailed to you, plus a free guide to setting fair HOA dues?</p>
+    <form class="capture-form" id="capture-form" action="https://formspree.io/f/xkoekykv" method="POST">
+      <input type="hidden" name="source" value="dues_calculator">
+      <input type="hidden" name="calc_result" id="calc-result-field">
+      <input type="email" name="email" placeholder="Your email address" required>
+      <button type="submit">Email Me</button>
+    </form>
+    <p class="capture-sent" id="capture-sent">✓ Sent! Check your inbox shortly.</p>
+  </div>
+
+  <div class="cta-block">
+    <p><strong>Ready to put this on autopilot?</strong><br>Track dues, send reminders, and collect payments — all in one place.</p>
+    <a href="https://app.simplifiedhoa.net/signup">Get Started →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">SimplifiedHOA</p>
+  <p>© 2026 SimplifiedHOA · <a href="https://simplifiedhoa.net" style="color:rgba(255,255,255,0.3); text-decoration:none;">simplifiedhoa.net</a> · Built for boards, by a homeowner · Palatine, IL</p>
+</footer>
+
+<script>
+  function calculateDues() {
+    const units = parseFloat(document.getElementById('units').value);
+    const budget = parseFloat(document.getElementById('budget').value) || 0;
+    const reserve = parseFloat(document.getElementById('reserve').value) || 0;
+
+    if (!units || units <= 0) {
+      document.getElementById('units').focus();
+      document.getElementById('units').style.borderColor = '#DC2626';
+      return;
+    }
+    document.getElementById('units').style.borderColor = '';
+
+    const monthlyOperating = (budget / units) / 12;
+    const monthlyReserve = (reserve / units) / 12;
+    const monthlyTotal = monthlyOperating + monthlyReserve;
+
+    const fmt = n => '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+
+    document.getElementById('result-total').innerHTML = fmt(monthlyTotal) + '<sub>/mo</sub>';
+    document.getElementById('result-operating').textContent = fmt(monthlyOperating);
+    document.getElementById('result-reserve').textContent = fmt(monthlyReserve);
+    document.getElementById('calc-result-field').value =
+      `Units: ${units}, Operating: ${fmt(monthlyOperating)}/mo, Reserve: ${fmt(monthlyReserve)}/mo, Total: ${fmt(monthlyTotal)}/mo`;
+
+    document.getElementById('result-card').style.display = 'block';
+    document.getElementById('disclaimer').style.display = 'block';
+    document.getElementById('capture-card').style.display = 'block';
+    document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  document.getElementById('capture-form').addEventListener('submit', function(e) {
+    // Formspree handles the POST natively; this just swaps the UI optimistically.
+    // If you'd rather stay on-page, uncomment the two lines below and add e.preventDefault() above.
+    // this.style.display = 'none';
+    // document.getElementById('capture-sent').style.display = 'block';
+  });
+
+  [document.getElementById('units'), document.getElementById('budget'), document.getElementById('reserve')].forEach(el => {
+    el.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); calculateDues(); } });
+  });
+</script>
+</body>
+</html>

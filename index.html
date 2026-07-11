@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simplified HOA — HOA Finances, Finally Under Control</title>
-<meta name="description" content="Simplified HOA is the simple, affordable dashboard for self-managed HOA boards. Track dues, manage expenses, and generate board-ready reports — no property management company required.">
-<meta property="og:title" content="Simplified HOA — HOA Finances, Finally Under Control">
+<title>SimplifiedHOA — HOA Finances, Finally Under Control</title>
+<meta name="description" content="SimplifiedHOA is the all-in-one platform for HOA boards and management companies. Track dues, manage work orders and violations, and generate board-ready reports — all in one place.">
+<meta property="og:title" content="SimplifiedHOA — HOA Finances, Finally Under Control">
 <meta property="og:description" content="Simple, affordable HOA financial management for self-managed boards.">
 <meta property="og:url" content="https://simplifiedhoa.net">
 <link rel="canonical" href="https://simplifiedhoa.net">
@@ -15,17 +15,17 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --navy:        #1B3A6B;
-    --navy-dark:   #122850;
-    --navy-mid:    #2A5298;
-    --sky:         #1D7DB5;
-    --sky-light:   #4A9FD4;
-    --sky-pale:    #E6F3FA;
+    --navy:        #1D4ED8;
+    --navy-dark:   #1D4ED8;
+    --navy-mid:    #1E40AF;
+    --sky:         #2563EB;
+    --sky-light:   #3B82F6;
+    --sky-pale:    #EFF6FF;
     --white:       #FFFFFF;
     --off-white:   #F5F8FC;
     --text:        #1A202C;
     --text-muted:  #4A5568;
-    --border:      #D1DCF0;
+    --border:      #DBEAFE;
     --radius:      12px;
   }
 
@@ -51,8 +51,9 @@
   }
 
   .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
     color: var(--navy);
     text-decoration: none;
     display: flex; align-items: center; gap: 10px;
@@ -103,7 +104,7 @@
     gap: 6px;
     background: var(--sky-pale);
     color: var(--sky);
-    border: 1px solid #B8D9EF;
+    border: 1px solid #BFDBFE;
     border-radius: 100px;
     padding: 5px 14px;
     font-size: 0.78rem;
@@ -148,45 +149,39 @@
     font-weight: 300;
   }
 
-  /* EMAIL FORM */
-  .email-form {
+  /* HERO CTA */
+  .hero-cta-row {
     display: flex;
-    gap: 8px;
-    max-width: 480px;
-    margin: 0 auto 0.75rem;
-    background: var(--white);
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    padding: 5px 5px 5px 16px;
-    box-shadow: 0 2px 12px rgba(27,58,107,0.08);
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
   }
 
-  .email-form input[type="email"] {
-    flex: 1;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    color: var(--text);
-  }
-
-  .email-form input::placeholder { color: #A0AEC0; }
-
-  .email-form button {
+  .hero-cta-primary {
+    display: inline-block;
     background: var(--navy);
     color: #fff;
-    border: none;
-    border-radius: 7px;
-    padding: 10px 22px;
+    text-decoration: none;
+    padding: 13px 32px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 2px 12px rgba(27,58,107,0.15);
+    transition: background 0.2s;
+  }
+  .hero-cta-primary:hover { background: var(--navy-mid); }
+
+  .hero-cta-secondary {
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
     font-weight: 500;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background 0.2s;
+    color: var(--text-muted);
+    text-decoration: none;
   }
-  .email-form button:hover { background: var(--navy-mid); }
+  .hero-cta-secondary:hover { color: var(--navy); text-decoration: underline; }
 
   .hero-sub {
     font-size: 0.8rem;
@@ -335,6 +330,19 @@
     gap: 1.25rem;
   }
 
+  .feature-group-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin: 0 0 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .features-grid + .feature-group-label { margin-top: 2.5rem; }
+
   .feature-card {
     background: var(--white);
     border: 1px solid var(--border);
@@ -421,7 +429,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%231D7DB5' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%232563EB' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -487,11 +495,12 @@
   }
 
   .suggestion-form {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: #fff;
+    border: 1px solid rgba(255,255,255,0.15);
     border-radius: var(--radius);
     padding: 2rem;
     text-align: left;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
   }
 
   .form-row {
@@ -507,7 +516,7 @@
   .form-group label {
     font-size: 0.75rem;
     font-weight: 600;
-    color: rgba(255,255,255,0.5);
+    color: var(--navy);
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
@@ -515,26 +524,26 @@
   .form-group input,
   .form-group select,
   .form-group textarea {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: var(--off-white);
+    border: 1.5px solid var(--border);
     border-radius: 8px;
     padding: 10px 14px;
     font-family: 'Inter', sans-serif;
     font-size: 0.88rem;
-    color: #fff;
+    color: var(--text);
     outline: none;
     transition: border-color 0.2s;
     -webkit-appearance: none;
   }
 
   .form-group input::placeholder,
-  .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+  .form-group textarea::placeholder { color: #94A3B8; }
 
   .form-group input:focus,
   .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--sky-light); }
+  .form-group textarea:focus { border-color: var(--sky); background: #fff; }
 
-  .form-group select option { background: var(--navy-dark); color: #fff; }
+  .form-group select option { background: #fff; color: var(--text); }
   .form-group textarea { resize: vertical; min-height: 100px; }
 
   .submit-btn {
@@ -555,11 +564,12 @@
 
   .success-msg {
     display: none;
-    background: rgba(255,255,255,0.07);
+    background: #fff;
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: var(--radius);
     padding: 2.5rem 2rem;
     text-align: center;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
   }
 
   .check-circle {
@@ -571,19 +581,20 @@
   }
 
   .check-circle svg { width: 26px; height: 26px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-  .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 0.5rem; }
-  .success-msg p { font-size: 0.9rem; color: rgba(255,255,255,0.55); }
+  .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 0.5rem; }
+  .success-msg p { font-size: 0.9rem; color: var(--text-muted); }
 
   /* FOOTER */
   footer {
-    background: #0D1F3C;
+    background: var(--navy-dark);
     padding: 2.5rem 2rem;
     text-align: center;
   }
 
   .footer-logo {
-    font-family: 'Playfair Display', serif;
-    color: rgba(255,255,255,0.35);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
     font-size: 1rem;
     margin-bottom: 0.5rem;
   }
@@ -599,12 +610,11 @@
   .hero-badge { animation: fadeUp 0.45s ease both; }
   .hero h1    { animation: fadeUp 0.5s 0.1s ease both; }
   .hero p     { animation: fadeUp 0.5s 0.2s ease both; }
-  .email-form { animation: fadeUp 0.5s 0.3s ease both; }
+  .hero-cta-row { animation: fadeUp 0.5s 0.3s ease both; }
   .trust-strip { animation: fadeUp 0.5s 0.4s ease both; }
 
   @media (max-width: 560px) {
-    .email-form { flex-direction: column; padding: 10px; gap: 8px; }
-    .email-form input { padding: 10px; }
+    .hero-cta-row { flex-direction: column; gap: 0.75rem; }
     .form-row { grid-template-columns: 1fr; }
     .pricing-block { flex-direction: column; text-align: center; }
     .price-right { text-align: center; }
@@ -637,11 +647,12 @@
     <div class="logo-icon">
       <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     </div>
-    Simplified HOA
+    SimplifiedHOA
   </a>
   <div class="nav-right">
     <a href="#how-it-works" class="nav-link">Features</a>
-    <a href="#top" class="nav-cta">Join the Waitlist</a>
+    <a href="calculator.html" class="nav-link">Dues Calculator</a>
+    <a href="pricing.html" class="nav-cta">View Plans</a>
   </div>
 </nav>
 
@@ -652,16 +663,16 @@
     Now accepting early interest
   </div>
   <h1>HOA finances, <em>finally</em> under control</h1>
-  <p>A simple, affordable dashboard built for self-managed HOA boards — no property management company required.</p>
+  <p>The all-in-one platform for self-managed boards and management companies alike — dues, work orders, violations, and more, all in one place.</p>
 
-  <form class="email-form" action="https://formspree.io/f/mnjrlwbr" method="POST">
-    <input type="email" name="email" placeholder="Enter your email address" required id="hero-email">
-    <button type="submit">Notify Me</button>
-  </form>
-  <p class="hero-sub">No spam. We'll only reach out when we're ready to launch.</p>
+  <div class="hero-cta-row">
+    <a href="https://app.simplifiedhoa.net/signup" class="hero-cta-primary">Get Started →</a>
+    <a href="https://app.simplifiedhoa.net/login" class="hero-cta-secondary">Already have an account? Sign in</a>
+  </div>
+  <p class="hero-sub">No long-term commitments. Activated within 24 hours.</p>
 
   <div class="trust-strip">
-    <p>The opportunity</p>
+    <p>You're not alone</p>
     <div class="trust-stats">
       <div class="stat-item">
         <div class="stat-num">370K+</div>
@@ -676,8 +687,8 @@
         <div class="stat-label">Homes in HOAs</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">$49</div>
-        <div class="stat-label">Per month, flat</div>
+        <div class="stat-num">9K+</div>
+        <div class="stat-label">HOA management companies</div>
       </div>
     </div>
   </div>
@@ -721,9 +732,10 @@
 
 <!-- FEATURES SECTION -->
 <section class="section" id="how-it-works">
-  <p class="section-label">What we're building</p>
+  <p class="section-label">What's included</p>
   <h2>Everything your board needs. Nothing you don't.</h2>
 
+  <p class="feature-group-label">Financial Tools</p>
   <div class="features-grid">
     <div class="feature-card">
       <div class="feature-icon">
@@ -736,15 +748,15 @@
       <div class="feature-icon">
         <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
       </div>
-      <h3>Dues Tracking</h3>
-      <p>Track who's paid, who's late, and who's delinquent. Send automated payment reminders so you don't have to.</p>
+      <h3>Dues Tracking & Late Fees</h3>
+      <p>Track who's paid, who's late, and who's delinquent. Automate late fees and payment reminders so you don't have to.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
       </div>
-      <h3>Board Reports</h3>
-      <p>Auto-generate a clean monthly financial summary PDF — ready to present at your next board meeting in one click.</p>
+      <h3>Online Payments</h3>
+      <p>Accept ACH and card payments directly through the platform. Funds deposit straight to your HOA bank account.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">
@@ -755,26 +767,72 @@
     </div>
     <div class="feature-card">
       <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <h3>Board Reports & Audit Trail</h3>
+      <p>Auto-generate a clean monthly financial summary — ready to present at your next board meeting in one click.</p>
+    </div>
+  </div>
+
+  <p class="feature-group-label">Community & Operations</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
       </div>
       <h3>Homeowner Portal</h3>
-      <p>Let residents check their dues balance, make payments, and receive community announcements all in one place.</p>
+      <p>Let residents check their dues balance, make payments, and stay current on community news — all in one place.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </div>
-      <h3>Online Payments</h3>
-      <p>Accept ACH and card payments directly through the platform. Funds deposit straight to your HOA bank account.</p>
+      <h3>Violations & Compliance</h3>
+      <p>Log violations, send notice letters, and track resolution status — all with a documented paper trail.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94z"/></svg>
+      </div>
+      <h3>Work Orders & Maintenance</h3>
+      <p>Residents submit requests, the board assigns and tracks them through to done. No more lost email threads.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"/></svg>
+      </div>
+      <h3>Architectural Review (ARC)</h3>
+      <p>Homeowners submit modification requests online; the board reviews and approves or denies with a clear record.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </div>
+      <h3>Online Voting & Elections</h3>
+      <p>Run board elections and community votes digitally, with results tallied automatically and stored for the record.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <h3>Meetings, Calendar & Announcements</h3>
+      <p>Schedule meetings, post minutes, and share community-wide announcements — all in one shared calendar.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+      </div>
+      <h3>Documents, Directory & Vendors</h3>
+      <p>Store governing documents and vendor contracts, and keep a searchable resident directory — all in one vault.</p>
     </div>
   </div>
 
   <div class="pricing-block">
     <div>
       <h3>Simple, flat-rate pricing</h3>
-      <p>One monthly fee — no per-unit charges, no setup costs, no long-term contracts.</p>
+      <p>Plans for every size community — from self-managed boards to full management companies.</p>
       <ul>
-        <li>Unlimited homeowners</li>
+        <li>Unlimited homeowners on every plan</li>
         <li>All features included</li>
         <li>Free onboarding support</li>
         <li>Cancel anytime</li>
@@ -782,8 +840,8 @@
     </div>
     <div class="price-right">
       <div class="price-tag">$49 <sub>/ mo</sub></div>
-      
-      <a href="#top" class="price-cta">Join the Waitlist</a>
+      <div class="price-note">Plans start here — see full pricing</div>
+      <a href="pricing.html" class="price-cta">View Plans →</a>
     </div>
   </div>
 </section>
@@ -793,7 +851,7 @@
   <div class="suggestions-inner">
     <p class="section-label">Shape what comes next</p>
     <h2>Tell us what matters most to your board</h2>
-    <p>Simplified HOA is launching soon. Your feedback directly influences additional features. Takes 2 minutes.</p>
+    <p>SimplifiedHOA is launching soon. Your feedback directly influences additional features. Takes 2 minutes.</p>
 
     <div id="form-wrap" class="suggestion-form">
       <form action="https://formspree.io/f/xkoekykv" method="POST">
@@ -845,7 +903,7 @@
         </div>
         <div class="form-row">
           <div class="form-group full">
-            <label>What would make Simplified HOA a must-have for your board?</label>
+            <label>What would make SimplifiedHOA a must-have for your board?</label>
             <textarea name="feature_request" placeholder="What's the one thing that would make managing your HOA finances effortless?"></textarea>
           </div>
         </div>
@@ -865,22 +923,11 @@
 
 <!-- FOOTER -->
 <footer>
-  <p class="footer-logo">Simplified HOA</p>
-  <p>© 2026 Simplified HOA · <a href="https://simplifiedhoa.net" style="color:rgba(255,255,255,0.3); text-decoration:none;">simplifiedhoa.net</a> · Built for boards, by a homeowner · Palatine, IL</p>
+  <p class="footer-logo">SimplifiedHOA</p>
+  <p>© 2026 SimplifiedHOA · <a href="https://simplifiedhoa.net" style="color:rgba(255,255,255,0.3); text-decoration:none;">simplifiedhoa.net</a> · Built for boards, by a homeowner · Palatine, IL</p>
 </footer>
 
 <script>
-  function handleHeroSubmit(e) {
-    e.preventDefault();
-    const email = document.getElementById('hero-email').value;
-    const btn = e.target.querySelector('button');
-    btn.textContent = '✓ You\'re on the list!';
-    btn.style.background = '#2A5298';
-    btn.disabled = true;
-    e.target.querySelector('input').disabled = true;
-    console.log('Hero email:', email);
-  }
-
   function handleSuggestionSubmit(e) {
     e.preventDefault();
     const data = {};
